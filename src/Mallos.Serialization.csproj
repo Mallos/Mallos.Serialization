@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Eric Tuvesson</Authors>
+    <Description>Simplify binary and non-binary serialization.</Description>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseUrl>https://github.com/erictuvesson/Mallos.Serialization/blob/master/MIT-LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/erictuvesson/Mallos.Serialization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/erictuvesson/Mallos.Serialization</RepositoryUrl>
+    <PackageTags>serialization</PackageTags>
+    <PackageId>Mallos.Serialization</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>
