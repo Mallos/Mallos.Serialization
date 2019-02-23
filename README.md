@@ -15,7 +15,6 @@ class Person : ISerializable
     }
 
     public Person(SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
         this.Name = info.GetString("Name");
     }
