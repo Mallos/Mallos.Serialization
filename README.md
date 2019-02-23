@@ -4,8 +4,6 @@ Simplify binary and non-binary serialization.
 ## Sample
 
 ```csharp
-using System.Runtime.Serialization;
-
 class Person : ISerializable
 {
     public readonly string Name;
@@ -21,7 +19,7 @@ class Person : ISerializable
         this.Name = info.GetString("Name");
     }
 
-    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
     {
         info.AddValue("Name", Name);
     }
