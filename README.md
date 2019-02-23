@@ -4,6 +4,7 @@ Simplify binary and non-binary serialization.
 ## Sample
 
 ```csharp
+[Serializable]
 class Person : ISerializable
 {
     public readonly string Name;

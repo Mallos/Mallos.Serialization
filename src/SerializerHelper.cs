@@ -11,7 +11,7 @@
         {
             return new Assembly[] {
                 Assembly.GetEntryAssembly(),
-                typeof(SerializerHelper).Assembly,
+                ThisAssembly(),
                 typeof(System.String).Assembly
             };
         }
@@ -19,13 +19,8 @@
         public static IEnumerable<Type> DependencyTypes()
         {
             return new Type[] {
-                
+                // NOTE: Add types that we want.
             };
-        }
-
-        public static IEnumerable<Type> GetShapeTypes(Assembly assembly = null)
-        {
-            return (assembly ?? ThisAssembly()).FindDerivedTypes<Shape>();
         }
 
         public static IEnumerable<Type> GetSerializableTypes(Assembly assembly = null)
@@ -33,6 +28,6 @@
             return (assembly ?? ThisAssembly()).FindByAttribute<SerializableAttribute>();
         }
 
-        internal static Assembly ThisAssembly() => Assembly.GetAssembly(typeof(Shape));
+        private static Assembly ThisAssembly() => Assembly.GetAssembly(typeof(SerializerHelper));
     }
 }

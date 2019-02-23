@@ -1,66 +1,67 @@
 namespace Mallos.Serialization
 {
     using System;
+    using Xunit;
     using Xunit.Abstractions;
 
-    public class SerializerStreamJsonTest : Test
-    {        
-        public SerializerStreamJsonTest(ITestOutputHelper output)
+    public abstract class SerializerStreamDataContractTest : Test
+    {
+        public SerializerStreamDataContractTest(ITestOutputHelper output)
             : base(output)
         {
 
         }
 
-        [Theory]
-        [InlineData(new SerializerStreamJson())]
-        [InlineData(new SerializerStreamXml())]
-        public string Save(SerializerStream stream)
+        protected abstract SerializerStream CreateSerializer();
+
+        [Fact]
+        public string Save()
         {
+            var stream = CreateSerializer();
+
             var result = stream.SerializeContent(Person.Homer);
-            output.Write(result);
+            output.WriteLine(result);
 
             return result;
         }
 
-        [Theory]
-        [InlineData(new SerializerStreamJson())]
-        [InlineData(new SerializerStreamXml())]
-        public byte[] SaveBinary(SerializerStream stream)
+        [Fact]
+        public byte[] SaveBinary()
         {
+            var stream = CreateSerializer();
+
             var result = stream.Serialize(Person.Homer);
-            output.Write(result);
+            output.WriteLine(result.ToString());
 
             return result;
         }
 
-        [Theory]
-        [InlineData(new SerializerStreamJson())]
-        [InlineData(new SerializerStreamXml())]
-        public void Load(SerializerStream stream)
+        [Fact]
+        public void Load()
         {
-            var import = Save(stream);
+            var import = Save();
             output.WriteLine("Import:");
-            output.Write(import);
+            output.WriteLine(import.ToString());
 
+            var stream = CreateSerializer();
             var person = stream.DeserializeContent<Person>(import);
             output.WriteLine("Result:");
-            output.Write(person);
+            output.WriteLine(person.ToString());
 
             Assert.Equal(person, Person.Homer);
         }
 
-        [Theory]
-        [InlineData(new SerializerStreamJson())]
-        [InlineData(new SerializerStreamXml())]
-        public void LoadBinary(SerializerStream stream)
+        [Fact]
+        public void LoadBinary()
         {
-            var import = SaveBinary(stream);
+            var import = SaveBinary();
             output.WriteLine("Import:");
-            output.Write(import);
+            output.WriteLine(import.ToString());
 
+            var stream = CreateSerializer();
             var person = stream.Deserialize<Person>(import);
             output.WriteLine("Result:");
-            output.Write(person);
+            output.WriteLine(person.ToString());
 
             Assert.Equal(person, Person.Homer);
         }
