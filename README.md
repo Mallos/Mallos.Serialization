@@ -1,4 +1,6 @@
 # Mallos.Serialization
+[![NuGet Badge](https://buildstats.info/nuget/Mallos.Serialization)](https://www.nuget.org/packages/Mallos.Serialization/)
+
 Simplify binary and non-binary serialization.
 
 ## Sample
