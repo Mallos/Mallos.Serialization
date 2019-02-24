@@ -1,6 +1,8 @@
 namespace Mallos.Serialization
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection;
     using Xunit;
     using Xunit.Abstractions;
 
@@ -12,9 +14,10 @@ namespace Mallos.Serialization
 
         }
 
-        protected override SerializerStream CreateSerializer()
+        protected override SerializerStream CreateSerializer(
+            IEnumerable<Type> types = null, IEnumerable<Assembly> assemblies = null)
         {
-            return new SerializerStreamXml();
+            return new SerializerStreamXml(assemblies, types);
         }
     }
 }

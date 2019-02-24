@@ -10,14 +10,14 @@
     {
         public readonly DataContractResolver Resolver;
 
-        public SerializerStreamXml(IEnumerable<Assembly> assemblies = null)
-            : this(new SerializerDataContractResolver(assemblies))
+        public SerializerStreamXml(IEnumerable<Assembly> assemblies = null, IEnumerable<Type> knownTypes = null)
+            : this(new SerializerDataContractResolver(assemblies), knownTypes)
         {
             
         }
 
-        public SerializerStreamXml(DataContractResolver resolver)
-            : base(null)
+        public SerializerStreamXml(DataContractResolver resolver, IEnumerable<Type> knownTypes = null)
+            : base(knownTypes)
         {
             this.Resolver = resolver;
         }

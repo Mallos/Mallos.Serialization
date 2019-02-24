@@ -1,6 +1,8 @@
 namespace Mallos.Serialization
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection;
     using Xunit;
     using Xunit.Abstractions;
 
@@ -12,7 +14,9 @@ namespace Mallos.Serialization
 
         }
 
-        protected abstract SerializerStream CreateSerializer();
+        protected abstract SerializerStream CreateSerializer(
+            IEnumerable<Type> types = null, IEnumerable<Assembly> assemblies = null
+        );
 
         [Fact]
         public string Save()
@@ -32,6 +36,19 @@ namespace Mallos.Serialization
 
             var result = stream.Serialize(Person.Homer);
             output.WriteLine(result.ToString());
+
+            return result;
+        }
+
+        [Fact]
+        public string SaveCustomType()
+        {
+            var stream = CreateSerializer(
+                new [] { typeof(Person) },
+                new [] { typeof(Person).Assembly });
+
+            var result = stream.SerializeContent(Employee.Homer);
+            output.WriteLine(result);
 
             return result;
         }

@@ -24,19 +24,5 @@ namespace Mallos.Serialization
         {
             info.AddValue("Name", Name);
         }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType())
-                return false;
-            
-            return base.Equals(obj) &&
-                   (obj as Person).Name == Name;
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode() ^ Name.GetHashCode();
-        }
     }
 }
