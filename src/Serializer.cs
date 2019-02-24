@@ -1,6 +1,7 @@
 namespace Mallos.Serialization
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.IO.Compression;
 
@@ -16,10 +17,10 @@ namespace Mallos.Serialization
 
         public SerializerStream SerializerStream { get; private set; }
 
-        public Serializer(SerializeFormat format = SerializeFormat.Json)
+        public Serializer(SerializeFormat format = SerializeFormat.Json, IEnumerable<Type> knownTypes = null)
         {
             this.Format = format;
-            this.SerializerStream = CreateSerializer(format);
+            this.SerializerStream = CreateSerializer(format, knownTypes);
         }
 
         public void Serialize<T>(string filepath, T value, bool binary = true)
@@ -71,13 +72,13 @@ namespace Mallos.Serialization
             }
         }
 
-        private static SerializerStream CreateSerializer(SerializeFormat format)
+        private static SerializerStream CreateSerializer(SerializeFormat format, IEnumerable<Type> knownTypes)
         {
             switch (format)
             {
                 default:
-                case SerializeFormat.Xml: return new SerializerStreamXml();
-                case SerializeFormat.Json: return new SerializerStreamJson();
+                case SerializeFormat.Xml: return new SerializerStreamXml(knownTypes: knownTypes);
+                case SerializeFormat.Json: return new SerializerStreamJson(knownTypes);
             }
         }
     }
