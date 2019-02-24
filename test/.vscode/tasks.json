@@ -10,10 +10,7 @@
                 "${workspaceFolder}/Mallos.Serialization.Test.csproj"
             ],
             "problemMatcher": "$msCompile",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
         }
     ]
 }
