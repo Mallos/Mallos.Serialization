@@ -8,10 +8,14 @@ namespace Mallos.Serialization
 
     public abstract class SerializerStreamDataContractTest : Test
     {
+        private readonly string savedContent;
+        private readonly byte[] savedBinary;
+
         public SerializerStreamDataContractTest(ITestOutputHelper output)
             : base(output)
         {
-
+            this.savedContent = Save();
+            this.savedBinary = SaveBinary();
         }
 
         protected abstract SerializerStream CreateSerializer(
@@ -56,12 +60,11 @@ namespace Mallos.Serialization
         [Fact]
         public void Load()
         {
-            var import = Save();
             output.WriteLine("Import:");
-            output.WriteLine(import.ToString());
+            output.WriteLine(savedContent.ToString());
 
             var stream = CreateSerializer();
-            var person = stream.DeserializeContent<Person>(import);
+            var person = stream.DeserializeContent<Person>(savedContent);
             output.WriteLine("Result:");
             output.WriteLine(person.ToString());
 
@@ -71,12 +74,11 @@ namespace Mallos.Serialization
         [Fact]
         public void LoadBinary()
         {
-            var import = SaveBinary();
             output.WriteLine("Import:");
-            output.WriteLine(import.ToString());
+            output.WriteLine(savedBinary.ToString());
 
             var stream = CreateSerializer();
-            var person = stream.Deserialize<Person>(import);
+            var person = stream.Deserialize<Person>(savedBinary);
             output.WriteLine("Result:");
             output.WriteLine(person.ToString());
 
