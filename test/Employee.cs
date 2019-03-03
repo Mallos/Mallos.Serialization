@@ -1,28 +1,28 @@
 namespace Mallos.Serialization
 {
-    using System;
-    using System.Runtime.Serialization;
-
-    [Serializable]
     public class Employee : ISerializable
     {
-        public static readonly Employee Homer = new Employee(new Person("Homer Simpson"));
-
         public readonly Person Person;
+        public readonly string Title;
 
-        public Employee(Person person)
+        public Employee(Person person, string title)
         {
             this.Person = person;
+            this.Title = title;
         }
 
-        public Employee(SerializationInfo info, StreamingContext context)
+        public Employee(SerializationStream stream)
         {
-            this.Person = info.GetValue<Person>("Person");
+            this.Person = stream.GetValue<Person>("Person");
+            this.Title = stream.GetString("Title");
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public void GetObjectData(SerializationStream stream)
         {
-            info.AddValue("Person", Person, typeof(Person));
+            stream.AddValue("Person", Person);
+            stream.AddString("Title", Title);
         }
+
+        public override string ToString() => $"Employee<Person: {Person}, Title: {Title}>";
     }
 }

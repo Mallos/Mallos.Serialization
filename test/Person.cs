@@ -1,30 +1,28 @@
 namespace Mallos.Serialization
 {
-    using System;
-    using System.Runtime.Serialization;
-
-    [Serializable]
     public class Person : ISerializable
     {
-        public static readonly Person Homer = new Person("Homer Simpson");
-
         public readonly string Name;
+        public readonly int Age;
 
-        public Person(string name)
+        public Person(string name, int age)
         {
             this.Name = name;
+            this.Age = age;
         }
 
-        public Person(SerializationInfo info, StreamingContext context)
+        public Person(SerializationStream stream)
         {
-            this.Name = info.GetString("Name");
+            this.Name = stream.GetString("Name");
+            this.Age = stream.GetInt32("Age");
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public void GetObjectData(SerializationStream stream)
         {
-            info.AddValue("Name", Name, typeof(string));
+            stream.AddString("Name", Name);
+            stream.AddInt32("Age", Age);
         }
 
-        public override string ToString() => $"Person Name: {Name}";
+        public override string ToString() => $"Person<Name: {Name}, Age: {Age}>";
     }
 }
