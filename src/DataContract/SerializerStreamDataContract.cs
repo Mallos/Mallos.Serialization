@@ -1,10 +1,9 @@
-﻿namespace Mallos.Serialization
+﻿namespace Mallos.Serialization.DataContract
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Xml;
 
@@ -17,7 +16,7 @@
 
         }
 
-        public override T Deserialize<T>(System.IO.Stream stream)
+        public override T Deserialize<T>(Stream stream)
         {
             using (var reader = XmlDictionaryReader.CreateBinaryReader(stream,
                 XmlDictionaryReaderQuotas.Max))

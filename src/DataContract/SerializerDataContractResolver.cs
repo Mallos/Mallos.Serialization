@@ -1,11 +1,11 @@
-﻿namespace Mallos.Serialization
+﻿namespace Mallos.Serialization.DataContract
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
     using System.Xml;
-    using System.Linq;
 
     public class SerializerDataContractResolver : DataContractResolver
     {

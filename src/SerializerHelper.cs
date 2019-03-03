@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using System.Runtime.Serialization;
 
     public static class SerializerHelper
     {
@@ -12,7 +11,7 @@
             return new Assembly[] {
                 Assembly.GetEntryAssembly(),
                 ThisAssembly(),
-                typeof(System.String).Assembly
+                typeof(string).Assembly
             };
         }
 

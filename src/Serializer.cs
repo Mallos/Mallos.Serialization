@@ -77,8 +77,8 @@ namespace Mallos.Serialization
             switch (format)
             {
                 default:
-                case SerializeFormat.Xml: return new SerializerStreamXml(knownTypes: knownTypes);
-                case SerializeFormat.Json: return new SerializerStreamJson(knownTypes);
+                case SerializeFormat.Xml: return new DataContract.SerializerStreamXml(knownTypes: knownTypes);
+                case SerializeFormat.Json: return new DataContract.SerializerStreamJson(knownTypes);
             }
         }
     }
