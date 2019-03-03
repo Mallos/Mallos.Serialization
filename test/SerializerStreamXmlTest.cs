@@ -3,7 +3,6 @@ namespace Mallos.Serialization
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Xunit;
     using Xunit.Abstractions;
 
     public class SerializerStreamXmlTest : SerializerStreamDataContractTest

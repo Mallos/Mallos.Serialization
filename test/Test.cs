@@ -1,6 +1,5 @@
 namespace Mallos.Serialization
 {
-    using System;
     using Xunit.Abstractions;
 
     public abstract class Test

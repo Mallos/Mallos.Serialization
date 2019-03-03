@@ -8,14 +8,10 @@ namespace Mallos.Serialization
 
     public abstract class SerializerStreamDataContractTest : Test
     {
-        private readonly string savedContent;
-        private readonly byte[] savedBinary;
-
         public SerializerStreamDataContractTest(ITestOutputHelper output)
             : base(output)
         {
-            this.savedContent = Save();
-            this.savedBinary = SaveBinary();
+
         }
 
         protected abstract SerializerStream CreateSerializer(
@@ -28,6 +24,8 @@ namespace Mallos.Serialization
             var stream = CreateSerializer();
 
             var result = stream.SerializeContent(Person.Homer);
+
+            output.WriteLine("Result:");
             output.WriteLine(result);
 
             return result;
@@ -39,7 +37,9 @@ namespace Mallos.Serialization
             var stream = CreateSerializer();
 
             var result = stream.Serialize(Person.Homer);
-            output.WriteLine(result.ToString());
+
+            output.WriteLine("Result:");
+            output.WriteLine(System.Text.Encoding.Default.GetString(result));
 
             return result;
         }
@@ -52,6 +52,8 @@ namespace Mallos.Serialization
                 new [] { typeof(Person).Assembly });
 
             var result = stream.SerializeContent(Employee.Homer);
+
+            output.WriteLine("Result:");
             output.WriteLine(result);
 
             return result;
@@ -60,12 +62,15 @@ namespace Mallos.Serialization
         [Fact]
         public void Load()
         {
+            var savedContent = Save();
+
             output.WriteLine("Import:");
             output.WriteLine(savedContent.ToString());
 
             var stream = CreateSerializer();
             var person = stream.DeserializeContent<Person>(savedContent);
-            output.WriteLine("Result:");
+
+            output.WriteLine("\nResult:");
             output.WriteLine(person.ToString());
 
             Assert.Equal(person.Name, Person.Homer.Name);
@@ -74,12 +79,15 @@ namespace Mallos.Serialization
         [Fact]
         public void LoadBinary()
         {
+            var savedBinary = SaveBinary();
+
             output.WriteLine("Import:");
-            output.WriteLine(savedBinary.ToString());
+            output.WriteLine(System.Text.Encoding.Default.GetString(savedBinary));
 
             var stream = CreateSerializer();
             var person = stream.Deserialize<Person>(savedBinary);
-            output.WriteLine("Result:");
+
+            output.WriteLine("\nResult:");
             output.WriteLine(person.ToString());
 
             Assert.Equal(person.Name, Person.Homer.Name);

@@ -22,7 +22,9 @@ namespace Mallos.Serialization
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("Name", Name);
+            info.AddValue("Name", Name, typeof(string));
         }
+
+        public override string ToString() => $"Person Name: {Name}";
     }
 }
