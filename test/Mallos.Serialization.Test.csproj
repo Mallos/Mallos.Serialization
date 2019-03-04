@@ -1,10 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <ParallelizeAssemblies>true</ParallelizeAssemblies>
     <ParallelizeTestCollections>true</ParallelizeTestCollections>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataContract\**" />
+    <EmbeddedResource Remove="DataContract\**" />
+    <None Remove="DataContract\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0-preview-20180924-03" />

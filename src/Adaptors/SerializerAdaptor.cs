@@ -1,15 +1,15 @@
-﻿namespace Mallos.Serialization
+﻿namespace Mallos.Serialization.Adaptors
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
 
-    public abstract class SerializerStream
+    public abstract class SerializerAdaptor
     {
         public readonly IEnumerable<Type> KnownTypes;
 
-        protected SerializerStream(IEnumerable<Type> knownTypes)
+        protected SerializerAdaptor(IEnumerable<Type> knownTypes)
         {
             this.KnownTypes = knownTypes.Concat(SerializerHelper.DependencyTypes());
         }

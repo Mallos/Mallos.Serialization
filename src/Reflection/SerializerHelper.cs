@@ -1,4 +1,4 @@
-﻿namespace Mallos.Serialization
+﻿namespace Mallos.Serialization.Reflection
 {
     using System;
     using System.Collections.Generic;

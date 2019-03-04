@@ -13,4 +13,17 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Adaptors\DataContact\**" />
+    <Compile Remove="DataContract\**" />
+    <EmbeddedResource Remove="Adaptors\DataContact\**" />
+    <EmbeddedResource Remove="DataContract\**" />
+    <None Remove="Adaptors\DataContact\**" />
+    <None Remove="DataContract\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Serializer.cs" />
+  </ItemGroup>
+
 </Project>
